@@ -1,0 +1,6 @@
+# Exercism files
+.exercism/
+
+# Output and Test files
+tests.out
+tests.out.*/
