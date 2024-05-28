@@ -9,13 +9,16 @@ char *reverse(const char *value) { return reverse_v1(value); }
 // First version, built on my own
 char *reverse_v1(const char *value) {
   int len = strlen(value);
-  char *reversed = calloc(len, sizeof(char));
 
-  int li = 0;
-  for (int ri = len - 1; ri >= 0; ri--) {
-    reversed[li] = value[ri];
-    li++;
+  // Allocates memory for len characters
+  // plus one additional character for the null terminator.
+  char *reversed = calloc(len + 1, sizeof(char));
+
+  for (int i = len - 1; i >= 0; i--) {
+    reversed[len - i - 1] = value[i];
   }
+
+  reversed[len] = '\0'; // string null terminator
 
   return reversed;
 }
@@ -30,11 +33,16 @@ char *reverse_v2(const char *value) {
     return NULL;
 
   int len = strlen(value);
+
+  // Allocates memory for len characters
+  // plus one additional character for the null terminator.
   char *reversed = calloc(len + 1, sizeof(char));
 
   for (reversed += len; *value; value++) {
     *(--reversed) = *value;
   }
+
+  reversed[len] = '\0'; // string null terminator
 
   return reversed;
 }
